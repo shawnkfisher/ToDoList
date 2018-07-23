@@ -1,0 +1,130 @@
+* {
+    margin: 				0;
+    box-sizing: 			border-box;
+}
+
+html, body {
+    font-family: 			sans-serif;
+    height: 				100vh;
+}
+
+/* Style the list */
+ul.tab {
+    list-style-type: 		none;
+    padding: 				0;
+    overflow: 				hidden;
+    background-color: 		#f1f1f1;
+}
+
+/* Float the list items side by side */
+ul.tab li {
+    float: 					left;
+}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: 				inline-block;
+    color: 					black;
+    padding: 				3vh 1vh 0vh 1vh; /* top right bot left */
+    text-decoration: 		none;  /* remove underline for the <a> */
+    transition: 			0.3s;
+    font-size: 				3.0vh;
+    height: 				10vh;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {
+    background-color: 		#ddd;
+}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {
+    background-color: 		#ccc;
+}
+
+/* Style the tab content */
+.tabContent {
+    display: 				none;
+    padding: 				10vw 10vw;
+    height: 				90vh;
+    font-size: 				2.5vh;
+}
+
+h3 {
+    font-size: 				4vh;
+    margin-bottom:  		2vh;
+}
+
+/* For phones (portrait) unless another @media rule below is fired */
+@media only screen and (max-width: 499px) {
+    .col-md-00  {display:          none; }
+    .col-md-01  {width:           8.33%; }
+    .col-md-02  {width:          16.66%; }
+    .col-md-03  {width:          25.00%; }
+    .col-md-04  {width:          33.33%; }
+    .col-md-05  {width:          41.66%; }
+    .col-md-06  {width:          50.00%; }
+    .col-md-07  {width:          58.33%; }
+    .col-md-08  {width:          66.66%; }
+    .col-md-09  {width:          75.00%; }
+    .col-md-10  {width:          83.33%; }
+    .col-md-11  {width:          91.66%; }
+    .col-md-12  {width:         100.00%; }
+    [class*="col-sm-"] {
+    }
+}
+
+/* For medium screens (e.g. landscape phones and portrait tablets) */
+@media only screen and (min-width: 500px) {
+    .col-md-00  {display:          none; }
+    .col-md-01  {width:           8.33%; }
+    .col-md-02  {width:          16.66%; }
+    .col-md-03  {width:          25.00%; }
+    .col-md-04  {width:          33.33%; }
+    .col-md-05  {width:          41.66%; }
+    .col-md-06  {width:          50.00%; }
+    .col-md-07  {width:          58.33%; }
+    .col-md-08  {width:          66.66%; }
+    .col-md-09  {width:          75.00%; }
+    .col-md-10  {width:          83.33%; }
+    .col-md-11  {width:          91.66%; }
+    .col-md-12  {width:         100.00%; }
+
+    [class*="col-md-"] {
+    }
+}
+
+/* For large screens or landscape tablets*/
+@media only screen and (min-width: 1024px) {
+    .col-sm-00  {display:       initial; }
+    .col-md-00  {display:       initial; }
+    .col-lg-01  {width:           8.33%; }
+    .col-lg-02  {width:          16.66%; }
+    .col-lg-03  {width:          25.00%; }
+    .col-lg-04  {width:          33.33%; }
+    .col-lg-05  {width:          41.66%; }
+    .col-lg-06  {width:          50.00%; }
+    .col-lg-07  {width:          58.33%; }
+    .col-lg-08  {width:          66.66%; }
+    .col-lg-09  {width:          75.00%; }
+    .col-lg-10  {width:          83.33%; }
+    .col-lg-11  {width:          91.66%; }
+    .col-lg-12  {width:         100.00%; }
+
+    [class*="col-lg-"] {
+    }
+}
+
+[class*="col-"] {
+    float:              left;
+}
+
+.row::after {
+    content:            "";
+    clear:              both;
+    display:            block;
+}
+
+.row {
+    text-align:         center;
+}

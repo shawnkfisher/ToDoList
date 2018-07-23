@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>onFocus Productivity Guru</title>
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no,
+		  initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+</head>
+
+<body onload="initialize()">
+<ul class="tab">
+    <li><a href="#" class="tabLink" id="SignIn" onclick="showTab(event, 'SignIn'  )">SignIn</a></li>
+    <li><a href="#" class="tabLink"             onclick="showTab(event, 'Home')">Home</a></li>
+    <li><a href="#" class="tabLink"             onclick="showTab(event, 'ToDo' )">ToDo</a></li>
+    <li><a href="#" class="tabLink"             onclick="showTab(event, 'Goals' )">Goals</a></li>
+    <li><a href="#" class="tabLink"             onclick="showTab(event, 'Notes' )">Notes</a></li>
+</ul>
+
+<div id="SignIn" 	class="preload tabContent">
+    <div class ="row">
+
+    </div>
+</div>
+
+<div id="Home" class="tabContent">
+</div>
+
+<div id="ToDo" 	class="tabContent">
+</div>
+
+<div id="Goals" class="tabContent">
+</div>
+
+<div id="Notes" class="tabContent">
+</div>
+
+<script type="text/javascript" src="js/index.js"></script>
+
+</body>
+</html>
