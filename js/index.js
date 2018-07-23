@@ -5,7 +5,7 @@ function initialize() {
 
 // shows sign in page of the app to the user
 function showSignIn() {
-        document.getElementById('SignIn').click();
+        document.getElementById('init').click();
 }
 
 // for changing tabs
