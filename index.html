@@ -9,7 +9,13 @@
           content="width=device-width, user-scalable=no,
 		  initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <!--Calendar scripts-->
+    <link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
+    <script src='lib/jquery.min.js'></script>
+    <script src='lib/moment.min.js'></script>
+    <script src='fullcalendar/fullcalendar.js'></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
 
 </head>
 
@@ -42,6 +48,20 @@
 </div>
 
 <div id="Home" class="tabContent">
+    <div id='home-title'><h1>Your week at a glance...</h1></div>
+    <!-- Calendar div and script -->
+    <div id='calendar'></div>
+    <script>
+        $(function() {
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+            })
+
+        });
+    </script>
 </div>
 
 <div id="ToDo" 	class="tabContent">
