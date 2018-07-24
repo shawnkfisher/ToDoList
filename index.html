@@ -21,29 +21,35 @@
 
 <body onload="initialize()">
 <ul class="tab">
-    <li><a href="#" class="tabLink" id="init" onclick="showTab(event, 'SignIn'  )">SignIn</a></li>
+    <li><a href="#" class="tabLink" id="init" onclick="showTab(event, 'Login'  )">Login</a></li>
     <li><a href="#" class="tabLink" onclick="showTab(event, 'Home')">Home</a></li>
     <li><a href="#" class="tabLink" onclick="showTab(event, 'ToDo' )">To-Do</a></li>
     <li><a href="#" class="tabLink" onclick="showTab(event, 'Goals' )">Goals</a></li>
     <li><a href="#" class="tabLink" onclick="showTab(event, 'Notes' )">Notes</a></li>
 </ul>
 
-<div id="SignIn" class="tabContent">
+<div id="Login" class="tabContent">
     <div class=" row col-lg-12 col-md-12 col-sm-12">&nbsp;</div>
     <div class ="row logo col-lg-12 col-md-12 col-sm-12">
         <h1>onFocus<br>Productivity<br>Guru</h1>
     </div>
-    <div class ="row">
-
-    </div>
-    <div class=" row col-lg-12 col-md-12 col-sm-12">&nbsp;</div>
-    <div class ="row">
-        <button onclick="">Sign In</button>
-    </div>
-    <div class=" col-lg-03 col-md-02 col-sm-01">&nbsp;</div>
-    <div class ="row">
-
-    </div>
+    <form>
+        <div class="row">
+            <input id="txtEmail" type="email" placeholder="Email">
+        </div>
+        <div class="row">
+            <input id="txtPassword" type="password" placeholder="Password">
+        </div>
+        <div class ="row">
+            <button id="btnLogin">Login</button>
+        </div>
+        <div class ="row">
+            <button id="btnSignUp">Sign Up</button>
+        </div>
+        <div class ="row">
+            <button id="btnLogout" class="btn btn-action hide">Logout</button>
+        </div>
+    </form>
     <div class=" row col-lg-12 col-md-12 col-sm-12">&nbsp;</div>
 </div>
 
@@ -75,8 +81,14 @@
         <div class="col-lg-10 col-md-10 col-sm-10">Date</div>
         <div class="col-lg-01 col-md-01 col-sm-01"><button onClick="">&gt;</button></div>
     </div>
-    <div class="row">
-
+    <div class="row "id="todoContainer">
+        <h1>To-Do List <i class="fa fa-chevron-circle-down"></i></h1>
+        <input class="addToList" type="text" placeholder="Add New Todo">
+        <ul>
+            <li><span><i class="fa fa-trash"></i></span> 1</li>
+            <li><span><i class="fa fa-trash"></i></span> 2</li>
+            <li><span><i class="fa fa-trash"></i></span> 3</li>
+        </ul>
     </div>
 </div>
 
@@ -85,6 +97,20 @@
 
 <div id="Notes" class="tabContent">
 </div>
+
+<!-- Firebase scripts -->
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+<script>
+    var config = {
+        apiKey: "AIzaSyAfzh2qI78idx9MvPgg31njvMTk9yKsSnI",
+        authDomain: "to-do-project-1c4ba.firebaseapp.com",
+        databaseURL: "https://to-do-project-1c4ba.firebaseio.com",
+        projectId: "to-do-project-1c4ba",
+        storageBucket: "to-do-project-1c4ba.appspot.com",
+        messagingSenderId: "1008912078596"
+    };
+    firebase.initializeApp(config);
+</script>
 
 <script type="text/javascript" src="js/index.js"></script>
 

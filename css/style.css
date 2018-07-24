@@ -4,7 +4,7 @@
 }
 
 html, body {
-    font-family: 			sans-serif;
+    font-family: 			'Raleway', sans-serif;
     height: 				100vh;
 }
 
@@ -50,9 +50,42 @@ ul.tab li a:focus, .active {
     font-size: 				2.5vh;
 }
 
-h3 {
-    font-size: 				4vh;
-    margin-bottom:  		2vh;
+#todoContainer {
+    width: 100%;
+}
+
+.fa-chevron-circle-down {
+    float: right;
+}
+
+#todoContainer input:focus{
+    background: rgba(255, 255, 255, 0.3);
+    border: 3px solid #430059;
+    outline: none;
+}
+
+#todoContainer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#todoContainer li {
+    background: #EAC8F5;
+    height: 40px;
+    line-height: 40px;
+    color: #430059;
+}
+
+/*this selects every other li child*/
+#todoContainer li:nth-child(2n){
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* when completed put a line through*/
+.completed {
+    color: #AA00E0;
+    text-decoration: line-through;
 }
 
 /* For phones (portrait) unless another @media rule below is fired */
