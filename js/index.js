@@ -35,48 +35,67 @@ function showTab(event, tabName) {
 
 /*Start Section -- Add new item to list*/
 // when a li is clicked in a ul, run this code: Cant get firebase portion to work
-var db = firebase.storage();
 
-$("ul").on("click", "li", function(){
-    $(this).toggleClass("completed");
-});
-
-$("ul").on("click", "span", function(event){
-
-    // the 1st "this" refers the span
-    $(this).parent().fadeOut(500, function(){
-        // the 2nd "this" refers to the li that is fading out
-        $(this).remove();
-    });
-    event.stopPropagation(); //this prevents bubbling
-});
-
-$("input[type='text']").keypress(function(event){
-    if(event.which === 13){
-        var todoText = $(this).val(); // retrieves value from input
-
-
-        $(this).val(""); // clears input
-
-        // this is a database
-        var todoRef = db.push({
-            description: todoText
-        });
-        var key = todoRef = db.push({
-            description: todoText
-        });
-
-
-        // creates new li in ul
-        $("ul").append("<li><span><i class='fa fa-trash'></i></span> " + todoText + "</li>");
-    }
-});
-
-$(".fa-chevron-circle-down").click(function(){
-    $("input[type='text']").fadeToggle();
-});
 /*End Section -- add new item to list*/
+var myTodoList = document.getElementsByClassName("listItem");
+var i;
 
+// adds close button on each li
+for (i = 0; i < myTodoList.length; i++) {
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.classList.add("listItem");
+    span.appendChild(txt);
+    myTodoList[i].appendChild(span);
+}
+
+// hides the list item when close button is clicked
+var close = document.getElementsByClassName("close");
+var i;
+for (i=0; i < close.length; i++) {
+    close[i].onclick = function () {
+        var div = this.parentElement;
+        div.style.display = "none";
+    }
+}
+
+// add checked symbol when li clicked
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+    if (ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('checked');
+    }
+}, false);
+
+// Add li when Add clicked
+function newElement() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("addToList").value;
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+        alert("You must write something!");
+    } else {
+        document.getElementById("todoList").appendChild(li);
+    }
+    document.getElementById("addToList").value = "";
+
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.classList.add("listItem");
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+}
+/* End Section -- add new item to list*/
 
 /*Start Section -- Firebase Auth*/
 const txtEmail = document.getElementById('txtEmail');

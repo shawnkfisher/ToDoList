@@ -82,12 +82,10 @@
         <div class="col-lg-01 col-md-01 col-sm-01"><button onClick="">&gt;</button></div>
     </div>
     <div class="row "id="todoContainer">
-        <h1>To-Do List <i class="fa fa-chevron-circle-down"></i></h1>
-        <input class="addToList" type="text" placeholder="Add New Todo">
-        <ul>
-            <li><span><i class="fa fa-trash"></i></span> 1</li>
-            <li><span><i class="fa fa-trash"></i></span> 2</li>
-            <li><span><i class="fa fa-trash"></i></span> 3</li>
+        <h1>To-Do List </h1>
+        <input id="addToList" type="text" placeholder="Add New Todo">
+        <span onclick="newElement()" class="addBtn">Add</span>
+        <ul id="todoList">
         </ul>
     </div>
 </div>
