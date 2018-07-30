@@ -1,6 +1,9 @@
 "use strict";
+
+
 /* Start Section -- Initialize*/
 function initialize() {
+    login();
     showSignIn();
 }
 // shows sign in page of the app to the user
@@ -37,7 +40,7 @@ function showTab(event, tabName) {
 // when a li is clicked in a ul, run this code: Cant get firebase portion to work
 
 /*End Section -- add new item to list*/
-var myTodoList = document.getElementsByClassName("listItem");
+var myTodoList = document.getElementsByClassName("todoListItem");
 var i;
 
 // adds close button on each li
@@ -45,7 +48,7 @@ for (i = 0; i < myTodoList.length; i++) {
     var span = document.createElement("SPAN");
     var txt = document.createTextNode("\u00D7");
     span.className = "close";
-    span.classList.add("listItem");
+    span.classList.add("todoListItem");
     span.appendChild(txt);
     myTodoList[i].appendChild(span);
 }
@@ -59,14 +62,6 @@ for (i=0; i < close.length; i++) {
         div.style.display = "none";
     }
 }
-
-// add checked symbol when li clicked
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-    if (ev.target.tagName === 'LI') {
-        ev.target.classList.toggle('checked');
-    }
-}, false);
 
 // Add li when Add clicked
 function newElement() {
@@ -84,7 +79,7 @@ function newElement() {
     var span = document.createElement("SPAN");
     var txt = document.createTextNode("\u00D7");
     span.className = "close";
-    span.classList.add("listItem");
+    span.classList.add("todoListItem");
     span.appendChild(txt);
     li.appendChild(span);
 
@@ -95,51 +90,34 @@ function newElement() {
         }
     }
 }
+
 /* End Section -- add new item to list*/
 
 /*Start Section -- Firebase Auth*/
-const txtEmail = document.getElementById('txtEmail');
-const txtPassword = document.getElementById('txtPassword');
-const btnLogin = document.getElementById('btnLogin');
-const btnSignUp = document.getElementById('btnSignUp');
+
 const btnLogout = document.getElementById('btnLogout');
-
-// add login event
-btnLogin.addEventListener('click', e=> {
-    //get email and pass
-    const email = txtEmail.value;
-    const pass = txtPassword.value;
-    const auth = firebase.auth();
-    // Sign in
-    const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
-});
-
-// Add signup event
-btnSignUp.addEventListener('click', e=> {
-    //get email and pass
-    const email = txtEmail.value;
-    const pass = txtPassword.value;
-    const auth = firebase.auth();
-    // Sign in
-    const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
-});
-
-// logout when logout clicked (temporarily on login page for testing)
 btnLogout.addEventListener('click', e=> {
     firebase.auth().signOut();
 });
 
-// Add a realtime Listener
-firebase.auth().onAuthStateChanged(firebaseUser => {
-    if(firebaseUser){
-        console.log(firebaseUser);
-        btnLogout.classList.remove('hide');
-    } else {
-        console.log('not logged in');
-        btnLogout.classList.add('hide');
+function login() {
+    function newLoginHappened(user) {
+        if (user) {
+            // User is signed in
+            app(user);
+        } else {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithRedirect(provider);
+        }
     }
-});
-/*End Section -- Firebase Auth*/
+    firebase.auth().onAuthStateChanged(newLoginHappened);
+}
 
+function app(user) {
+    // user.displayName
+    // user.email
+    // user.photoURL
+    // user.uid
+    document.getElementById("clientName").innerHTML = user.displayName;
+}
+/*End Section -- Firebase Auth*/
