@@ -94,17 +94,15 @@ function newElement() {
 /* End Section -- add new item to list*/
 
 /*Start Section -- Firebase Auth*/
-
-const btnLogout = document.getElementById('btnLogout');
-btnLogout.addEventListener('click', e=> {
-    firebase.auth().signOut();
-});
+// user.displayName
+// user.email
+// user.photoURL
+// user.uid
 
 function login() {
     function newLoginHappened(user) {
         if (user) {
             // User is signed in
-            app(user);
         } else {
             var provider = new firebase.auth.GoogleAuthProvider();
             firebase.auth().signInWithRedirect(provider);
@@ -113,11 +111,8 @@ function login() {
     firebase.auth().onAuthStateChanged(newLoginHappened);
 }
 
-function app(user) {
-    // user.displayName
-    // user.email
-    // user.photoURL
-    // user.uid
-    document.getElementById("clientName").innerHTML = user.displayName;
-}
+const btnLogout = document.getElementById('btnLogout');
+btnLogout.addEventListener('click', e=> {
+    firebase.auth().signOut();
+});
 /*End Section -- Firebase Auth*/
