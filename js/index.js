@@ -4,10 +4,10 @@
 /* Start Section -- Initialize*/
 function initialize() {
     login();
-    showSignIn();
+    showHome();
 }
 // shows sign in page of the app to the user
-function showSignIn() {
+function showHome() {
         document.getElementById('init').click();
 }
 /* End Section -- Initialize*/
