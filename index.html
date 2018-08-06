@@ -15,17 +15,26 @@
     <script src='lib/moment.min.js'></script>
     <script src='fullcalendar/fullcalendar.js'></script>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 
 </head>
 
-<body onload="initialize()">
+<body onload="login()">
 <ul class="tab">
     <li><a href="#" class="tabLink" id="init" onclick="showTab(event, 'Home')">Home</a></li>
     <li><a href="#" class="tabLink" onclick="showTab(event, 'ToDo' )">To-Do</a></li>
     <li><a href="#" class="tabLink" onclick="showTab(event, 'Goals' )">Goals</a></li>
     <li><a href="#" class="tabLink" onclick="showTab(event, 'Notes' )">Notes</a></li>
 </ul>
+
+    <div id="login-cover">
+        <!-- MDL Spinner Component -->
+        <div class="mdl-spinner mdl-js-spinner is-active"></div>
+    </div>
 
 <div id="Home" class="tabContent">
     <div><button id="btnLogout" class="btn btn-action hide">Logout</button></div>
@@ -58,8 +67,8 @@
     </div>
     <div class="row" id="todoContainer">
         <h1>To-Do List </h1>
-        <input id="addToList" type="text" placeholder="Add New Todo">
-        <span onclick="newElement()" class="addBtn">Add</span>
+        <input id="task" type="text" placeholder="Add New Todo">
+        <span onclick="newElement()" id="addBtn">Add</span>
         <ul id="todoList">
         </ul>
     </div>
