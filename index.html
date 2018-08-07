@@ -24,60 +24,71 @@
 </head>
 
 <body onload="login()">
-<ul class="tab">
-    <li><a href="#" class="tabLink" id="init" onclick="showTab(event, 'Home')">Home</a></li>
-    <li><a href="#" class="tabLink" onclick="showTab(event, 'ToDo' )">To-Do</a></li>
-    <li><a href="#" class="tabLink" onclick="showTab(event, 'Goals' )">Goals</a></li>
-    <li><a href="#" class="tabLink" onclick="showTab(event, 'Notes' )">Notes</a></li>
-</ul>
 
-    <div id="login-cover">
-        <!-- MDL Spinner Component -->
-        <div class="mdl-spinner mdl-js-spinner is-active"></div>
-    </div>
-
-<div id="Home" class="tabContent">
-    <div><button id="btnLogout" class="btn btn-action hide">Logout</button></div>
-    <div id='home-title'><h1>Your week at a glance...</h1></div>
-    <!-- Calendar div and script -->
-    <div id='calendar'></div>
-    <script>
-        $(function() {
-
-            // page is now ready, initialize the calendar...
-
-            $('#calendar').fullCalendar({
-                // put your options and callbacks here
-            })
-
-        });
-    </script>
+<div id="login-cover">
+    <!-- MDL Spinner Component -->
+    <div class="mdl-spinner mdl-js-spinner is-active"></div>
 </div>
 
-<div id="ToDo" 	class="tabContent">
-    <div class="row">
-        <div class="col-lg-01 col-md-01 col-sm-01"><button onClick="">Back</button></div>
-        <div class="col-lg-10 col-md-10 col-sm-10">&nbsp;</div>
-        <div class="col-lg-01 col-md-01 col-sm-01"><button onClick="">LogOut</button></div>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+            mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">onFocus();</span>
+            <button id="btnLogout" class="btn btn-action hide">Logout</button>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Home</a>
+            <a href="#fixed-tab-2" class="mdl-layout__tab">To-Do</a>
+            <a href="#fixed-tab-3" class="mdl-layout__tab">Goals</a>
+        </div>
+    </header>
+    <!-- Nav Bar Drawer-->
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">onFocus();</span>
     </div>
-    <div class="row">
-        <div class="col-lg-01 col-md-01 col-sm-01"><button onClick="">&lt;</button></div>
-        <div class="col-lg-10 col-md-10 col-sm-10">Date</div>
-        <div class="col-lg-01 col-md-01 col-sm-01"><button onClick="">&gt;</button></div>
-    </div>
-    <div class="row" id="todoContainer">
-        <h1>To-Do List </h1>
-        <input id="task" type="text" placeholder="Add New Todo">
-        <span onclick="newElement()" id="addBtn">Add</span>
-        <ul id="todoList">
-        </ul>
-    </div>
-</div>
+    <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+            <div class="page-content">
+                <div id='home-title'><h1>Your week at a glance...</h1></div>
+                <!-- Calendar div and script -->
+                <div id='calendar'></div>
+                <script>
+                    $(function() {
 
-<div id="Goals" class="tabContent">
-</div>
+                        // page is now ready, initialize the calendar...
 
-<div id="Notes" class="tabContent">
+                        $('#calendar').fullCalendar({
+                            // put your options and callbacks here
+                        })
+
+                    });
+                </script>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-lg-01 col-md-01 col-sm-01"><button onClick="">&lt;</button></div>
+                    <div class="col-lg-10 col-md-10 col-sm-10">Date</div>
+                    <div class="col-lg-01 col-md-01 col-sm-01"><button onClick="">&gt;</button></div>
+                </div>
+                <div class="row" id="todoContainer">
+                    <h1>To-Do List </h1>
+                    <input id="task" type="text" placeholder="Add New Todo">
+                    <span onclick="newElement()" id="addBtn">Add</span>
+                    <ul id="todoList">
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+            <div class="page-content">
+                // notes content
+            </div>
+        </section>
+    </main>
 </div>
 </body>
 <!-- Firebase scripts -->

@@ -8,52 +8,6 @@ html, body {
     height: 				100vh;
 }
 
-/* Style the list */
-ul.tab {
-    list-style-type: 		none;
-    padding: 				0;
-    overflow: 				hidden;
-    background-color: 		#f1f1f1;
-}
-
-/* Float the list items side by side */
-ul.tab li {
-    float: 					left;
-}
-
-/* Style the links inside the list items */
-ul.tab li a {
-    display: 				inline-block;
-    color: 					black;
-    padding: 				3vh 1vh 0vh 1vh; /* top right bot left */
-    text-decoration: 		none;  /* remove underline for the <a> */
-    transition: 			0.3s;
-    font-size: 				3.0vh;
-    height: 				10vh;
-}
-
-/* Change background color of links on hover */
-ul.tab li a:hover {
-    background-color: 		#ddd;
-}
-
-/* Create an active/current tablink class */
-ul.tab li a:focus, .active {
-    background-color: 		#ccc;
-}
-
-/* Style the tab content */
-.tabContent {
-    display: 				none;
-    padding: 				4vw 4vw;
-    height: 				90vh;
-    font-size: 				2.5vh;
-}
-
-#todoContainer ul {
-    list-style: none;
-}
-
 /* When clicked on, add a background color and strike out text */
 ul li.checked {
     background: #888;
