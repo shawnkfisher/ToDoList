@@ -8,33 +8,6 @@ html, body {
     height: 				100vh;
 }
 
-/* When clicked on, add a background color and strike out text */
-ul li.checked {
-    background: #888;
-    color: #fff;
-    text-decoration: line-through;
-}
-
-/* Add a "checked" mark when clicked on */
-ul li.checked::before {
-    content: '';
-    position: absolute;
-    border-color: #fff;
-    border-style: solid;
-    border-width: 0 2px 2px 0;
-    top: 10px;
-    left: 16px;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 7px;
-}
-
-/* when completed put a line through*/
-.completed {
-    color: #AA00E0;
-    text-decoration: line-through;
-}
-
 /* For phones (portrait) unless another @media rule below is fired */
 @media only screen and (max-width: 499px) {
     .col-md-00  {display:          none; }
@@ -123,3 +96,4 @@ ul li.checked::before {
     justify-content: center;
     align-items: center;
 }
+

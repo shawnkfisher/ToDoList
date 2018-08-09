@@ -25,63 +25,42 @@ btnLogout.addEventListener('click', e=> {
 });
 /*End Section -- Firebase Auth*/
 
-/*Start Section -- Add new item to list*/
-// when a li is clicked in a ul, run this code: Cant get firebase portion to work
-
-/*End Section -- add new item to list*/
-var myTodoList = document.getElementsByClassName("todoListItem");
-var i;
-
-// adds close button on each li
-for (i = 0; i < myTodoList.length; i++) {
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.classList.add("todoListItem");
-    span.appendChild(txt);
-    myTodoList[i].appendChild(span);
-}
-
-// hides the list item when close button is clicked
-var close = document.getElementsByClassName("close");
-var i;
-for (i=0; i < close.length; i++) {
-    close[i].onclick = function () {
-        var div = this.parentElement;
-        div.style.display = "none";
-    }
-}
-
-// Add li when Add clicked
+// Add new task when Add clicked
 function newElement() {
     var li = document.createElement("li");
+    var span = document.createElement("span");
     var task = document.getElementById("task").value;
-    var t = document.createTextNode(task);
+    var textnode = document.createTextNode(task);
     var firebaseRef = firebase.database().ref('Task/');
 
     firebaseRef.set(task);
 
-    li.appendChild(t);
+    li.className = 'mdl-list__item';
+    span.className = 'mdl-list__item-primary-content';
+    span.appendChild(textnode);
+
     if (task === '') {
         alert("You must write something!");
     } else {
+        li.appendChild(span);
         document.getElementById("todoList").appendChild(li);
     }
     document.getElementById("task").value = "";
 
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.classList.add("todoListItem");
-    span.appendChild(txt);
-    li.appendChild(span);
+    var span2 = document.createElement("span");
+    var label = document.createElement("label");
+    var input = document.createElement("input");
 
-    for (i = 0; i < close.length; i++) {
-        close[i].onclick = function() {
-            var div = this.parentElement;
-            div.style.display = "none";
-        }
-    }
+    label.className = 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect';
+    label.setAttribute("for", "list-checkbox-2");
+    span2.className = 'mdl-list__item-secondary-action';
+    input.type = 'checkbox';
+    input.id = 'list-checkbox-2';
+    input.className = 'mdl-checkbox__input';
+
+    li.appendChild(span2);
+    span2.appendChild(label);
+    label.appendChild(input);
 }
 
 /* End Section -- add new item to list*/
