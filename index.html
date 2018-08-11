@@ -15,7 +15,6 @@
     <script src='lib/moment.min.js'></script>
     <script src='fullcalendar/fullcalendar.js'></script>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-pink.min.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -95,21 +94,27 @@
                 </ul>
             </div>
             <div class="col-lg-02 col-md-02 col-sm-00">&nbsp;</div>
+            <div class="fab">
+                <div>
+                    <button onclick="newElement()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                        <i class="material-icons ">add</i>
+                    </button>
+                </div>
+            </div>
         </section>
         <section class="mdl-layout__tab-panel" id="fixed-tab-3">
             <div class="page-content">
                 // notes content
             </div>
+            <div class="fab">
+                <div>
+                    <button onclick="newElement()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                        <i class="material-icons ">add</i>
+                    </button>
+                </div>
+            </div>
         </section>
     </main>
-    <div class="fab row">
-        <div class="col-lg-11 col-md-11 col-sm-11">&nbsp;</div>
-        <div class="col-lg-01 col-md-01 col-sm-01">
-            <button onclick="newElement()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-                <i class="material-icons">add</i>
-            </button>
-        </div>
-    </div>
 </div>
 </body>
 <!-- Firebase scripts -->

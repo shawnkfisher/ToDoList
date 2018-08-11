@@ -1,6 +1,5 @@
 "use strict";
 
-
 /*Start Section -- Firebase Auth*/
 // user.displayName
 // user.email
@@ -25,7 +24,7 @@ btnLogout.addEventListener('click', e=> {
 });
 /*End Section -- Firebase Auth*/
 
-// Add new task when Add clicked
+/* Start Section -- add new item to list*/
 function newElement() {
     var li = document.createElement("li");
     var span = document.createElement("span");
@@ -61,6 +60,8 @@ function newElement() {
     li.appendChild(span2);
     span2.appendChild(label);
     label.appendChild(input);
+    //componentHandler.upgradeElement(label);
+    componentHandler.upgradeDom(); //have to upgradeDom when Elements are added Dynamically
 }
 
 /* End Section -- add new item to list*/

@@ -97,3 +97,8 @@ html, body {
     align-items: center;
 }
 
+.fab {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+}
