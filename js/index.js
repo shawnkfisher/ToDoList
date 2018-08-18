@@ -4,8 +4,6 @@
 var database = firebase.database(); // database reference
 var auth = firebase.auth(); // authentication reference
 
-var taskCount = 0;//keeps track of what toDoList element your on (not working right)
-
 /*Start Section -- Firebase Auth/On Load*/
 function login() {
     function newLoginHappened(user) {
@@ -28,11 +26,8 @@ btnLogout.addEventListener('click', e=> {
 
 /* Start Section -- add new item to ToDolist*/
 function newElement() {
-    var task = document.getElementById("task").value; // gets task from input
-     //gets current userid
+    var task = document.getElementById("task").value;
     var userId = auth.currentUser.uid;
-    // this taskRef attempts to organize tasks by taskcount but doesn't work
-    //var taskRef = database.ref('Users/' + userId + '/Task' + taskCount + '/'); //references current userId's tasks
     var taskRef = database.ref('Users/' + userId + '/Task');
 
     // references the TaskCount stored on firebase for current user
@@ -46,27 +41,21 @@ function newElement() {
     } else { //push input to firebase (triggers on child_added event listener
         taskRef.push({
             Task: task,
-            //State: false //keeps track of the state of checkboxes
+            State: false //keeps track of the state of checkboxes
         });
     }
 }
 /* End Section -- add new item to list*/
 
 function loadToDoList(user) {
-    // this taskRef attempts to organize tasks by taskcount but doesn't work
-    //var taskRef = database.ref('Users/' + user.uid + '/Task' + taskCount + '/');
-
     var taskRef = database.ref('Users/' + user.uid + '/Task');
     var taskCountRef = database.ref('Users/' + user.uid + '/TaskCount/');
-
-    // gets TaskCount from firebase
-    taskCountRef.on("value", function(data) {
-        taskCount = data.val();
-    });
+    var taskCount = 0;
 
     // child_added event listener
     taskRef.on("child_added", function(data) {
         var task = data.val().Task; //gets task from firebase
+        taskCount++;
 
         // Create Elements for ToDoList
         var li = document.createElement("li");
@@ -95,30 +84,37 @@ function loadToDoList(user) {
         label.appendChild(input);
         componentHandler.upgradeDom(); //have to upgradeDom when Elements are added Dynamically
 
-        /* Attempts to save the "state" of the checkboxes to firebase as true or false
-                        var checkBox = document.getElementById("list-checkbox-" + taskCount);
+        var checkBox = document.getElementById("list-checkbox-" + taskCount);
+        var key = data.key;
+        var stateRef = database.ref('Users/' + user.uid + '/Task/' + key);
 
-                        // sync to firebase
-                        taskRef.child("State").on("value", function(res) {
-                            var states = res.val();
-                            checkBox.setAttribute('checked', states);
-                            console.log(states);
-                        });
+        /* Get the status on Firebase*/
+        stateRef.once("value", function(data) {
+            var status = data.child("State").val();
+            console.log("status: " + status);
+            checkBox.setAttribute('checked', status);
+        });
 
-                        // Get the status on Firebase
-                        taskRef.once("value", function(res) {
-                            var stus = res.child("State").val();
-                            checkBox.setAttribute('checked', status);
-                        });
+        // sync with firebase
+        stateRef.child("State").on("child_changed", function(data) {
+            var states = data.val();
+            checkBox.setAttribute('checked', states);
+            console.log("states" + states);
+        });
 
-                        //update value, changed status of checkbox
-                        /*checkBox.addEventListener('change', function() {
-                            if(this.checked) {
-                                taskRef.update({State: true});
-                            } else {
-                                taskRef.update({State: false});
-                            }
-                        });
-         */
+        //update value, changed status of checkbox
+        checkBox.addEventListener('change', function() {
+            if(this.checked) {
+                stateRef.update({State: true});
+            } else {
+                stateRef.update({State: false});
+            }
+        });
+
+        // gets TaskCount from firebase
+        taskCountRef.on("value", function(data) {
+            taskCount = data.val();
+        });
+
     });
 }
