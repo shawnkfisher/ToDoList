@@ -3,7 +3,9 @@
 //globals
 var database = firebase.database(); // database reference
 var auth = firebase.auth(); // authentication reference
+
 var taskCount = 0;//keeps track of what toDoList element your on (not working right)
+
 /*Start Section -- Firebase Auth/On Load*/
 function login() {
     function newLoginHappened(user) {
@@ -27,13 +29,17 @@ btnLogout.addEventListener('click', e=> {
 /* Start Section -- add new item to ToDolist*/
 function newElement() {
     var task = document.getElementById("task").value; // gets task from input
-    var userId = auth.currentUser.uid; //gets current userid
-
+     //gets current userid
+    var userId = auth.currentUser.uid;
     // this taskRef attempts to organize tasks by taskcount but doesn't work
     //var taskRef = database.ref('Users/' + userId + '/Task' + taskCount + '/'); //references current userId's tasks
-
     var taskRef = database.ref('Users/' + userId + '/Task');
-    taskCount++;
+
+    // references the TaskCount stored on firebase for current user
+    var taskCountRef = database.ref('Users/' + userId + '/TaskCount/');
+    taskCountRef.transaction(function (current_value) {
+        return (current_value || 0) + 1; //increments TaskCount on firebase
+    });
 
     if (task === '') { //input is empty
         alert("You must write something!");
@@ -51,9 +57,16 @@ function loadToDoList(user) {
     //var taskRef = database.ref('Users/' + user.uid + '/Task' + taskCount + '/');
 
     var taskRef = database.ref('Users/' + user.uid + '/Task');
+    var taskCountRef = database.ref('Users/' + user.uid + '/TaskCount/');
+
+    // gets TaskCount from firebase
+    taskCountRef.on("value", function(data) {
+        taskCount = data.val();
+    });
+
     // child_added event listener
-    taskRef.on("child_added", function(snapshot) {
-        var task = snapshot.val().Task; //gets task from firebase
+    taskRef.on("child_added", function(data) {
+        var task = data.val().Task; //gets task from firebase
 
         // Create Elements for ToDoList
         var li = document.createElement("li");
@@ -107,6 +120,5 @@ function loadToDoList(user) {
                             }
                         });
          */
-
     });
 }
