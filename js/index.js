@@ -88,19 +88,23 @@ function loadToDoList(user) {
         var key = data.key;
         var stateRef = database.ref('Users/' + user.uid + '/Task/' + key);
 
-        /* Get the status on Firebase*/
+        // Get the status on Firebase
         stateRef.once("value", function(data) {
             var status = data.child("State").val();
-            console.log("status: " + status);
-            checkBox.setAttribute('checked', status);
+            //checkBox.setAttribute('checked', status);
+            if (status === true) {
+                label.classList.add("is-checked");
+            }
         });
 
-        // sync with firebase
-        stateRef.child("State").on("child_changed", function(data) {
+        // (might not be needed any longer) sync with firebase
+        /*stateRef.child("State").on("child_changed", function(data) {
             var states = data.val();
-            checkBox.setAttribute('checked', states);
-            console.log("states" + states);
-        });
+            //checkBox.setAttribute('checked', states);
+            if (states === true) {
+                label.classList.add("is-checked");
+            }
+        });*/
 
         //update value, changed status of checkbox
         checkBox.addEventListener('change', function() {
