@@ -18,10 +18,9 @@ function login() {
     auth.onAuthStateChanged(newLoginHappened);
 }
 // Logout button logs out the user
-const btnLogout = document.getElementById('btnLogout');
-btnLogout.addEventListener('click', e=> {
+function logout() {
     auth.signOut();
-});
+}
 /*End Section -- Firebase Auth/ On Load*/
 
 /* Start Section -- add new item to ToDolist*/

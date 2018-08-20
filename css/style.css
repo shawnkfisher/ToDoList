@@ -102,3 +102,17 @@ html, body {
     right: 32px;
     bottom: 32px;
 }
+.logout {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+}
+.mdl-layout__tab-bar-container {
+    height: 76px;
+}
+.mdl-layout__tab-bar .mdl-layout__tab {
+    margin-top: 28px;
+}
+.mdl-textfield {
+    padding-bottom: 0;
+}
