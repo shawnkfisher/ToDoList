@@ -23,8 +23,22 @@ function logout() {
 }
 /*End Section -- Firebase Auth/ On Load*/
 
+function openInput() {
+    document.getElementById("mdl-layout__content").style.display = "none";
+    document.getElementById("enter-input").style.display = "flex";
+}
+
+function closeInput() {
+    document.getElementById("mdl-layout__content").style.display = "inline-block";
+    document.getElementById("enter-input").style.display = "none";
+    document.getElementById("task").value = "";
+}
+
 /* Start Section -- add new item to ToDolist*/
 function newElement() {
+    document.getElementById("mdl-layout__content").style.display = "inline-block";
+    document.getElementById("enter-input").style.display = "none";
+
     var task = document.getElementById("task").value;
     var userId = auth.currentUser.uid;
     var taskRef = database.ref('Users/' + userId + '/Task');
@@ -43,6 +57,7 @@ function newElement() {
             State: false //keeps track of the state of checkboxes
         });
     }
+    task.value = "";
 }
 /* End Section -- add new item to list*/
 

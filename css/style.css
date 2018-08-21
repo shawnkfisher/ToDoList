@@ -108,11 +108,22 @@ html, body {
     left: 32px;
 }
 .mdl-layout__tab-bar-container {
-    height: 76px;
+    margin-top: 8px;
 }
-.mdl-layout__tab-bar .mdl-layout__tab {
-    margin-top: 28px;
+.demo-card-square.mdl-card {
+    width: 320px;
+    height: 320px;
+    z-index: 800;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
-.mdl-textfield {
-    padding-bottom: 0;
+.demo-card-square > .mdl-card__title {
+    color: #fff;
+}
+.demo-card-square {
+    background: #009688;
+}
+.mdl-card__actions, .input-item {
+    background: white;
 }
