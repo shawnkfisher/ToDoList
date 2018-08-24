@@ -57,7 +57,7 @@ function newElement() {
             State: false //keeps track of the state of checkboxes
         });
     }
-    task.value = "";
+    document.getElementById("task").value = "";
 }
 /* End Section -- add new item to list*/
 
