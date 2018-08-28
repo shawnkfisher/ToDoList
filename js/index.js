@@ -66,6 +66,10 @@ function newElement() {
     }
     document.getElementById("task").value = "";
 }
+
+function deleteElement(taskcount) {
+
+}
 /* End Section -- add new item to list*/
 
 function loadToDoList(user) {
@@ -85,10 +89,12 @@ function loadToDoList(user) {
         var span2 = document.createElement("span");
         var label = document.createElement("label");
         var input = document.createElement("input");
+        //var span3 = document.createElement("span");
+        //var icon = document.createTextNode("backspace");
 
         // Classes for elements
         li.className = 'mdl-list__item';
-        span.className = 'mdl-list__item-primary-content';
+        span.className = 'mdl-list__item-primary-content ';
         label.className = 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect';
         label.setAttribute("for", "list-checkbox-" + taskCount); // attempting to make checkboxes correspond with elements
         span2.className = 'mdl-list__item-secondary-action';
@@ -118,15 +124,6 @@ function loadToDoList(user) {
             }
         });
 
-        // (might not be needed any longer) sync with firebase
-        /*stateRef.child("State").on("child_changed", function(data) {
-            var states = data.val();
-            //checkBox.setAttribute('checked', states);
-            if (states === true) {
-                label.classList.add("is-checked");
-            }
-        });*/
-
         //update value, changed status of checkbox
         checkBox.addEventListener('change', function() {
             if(this.checked) {
@@ -143,3 +140,18 @@ function loadToDoList(user) {
 
     });
 }
+
+var snackbarContainer = document.getElementById('demo-snackbar-example');
+var addBtn = document.getElementById("addBtn");
+var handler = function(e) {
+    //remove the task
+};
+addBtn.addEventListener('click', function() {
+    var data = {
+        message: 'Task Added.',
+        timeout: 2000,
+        actionHandler: handler,
+        actionText: 'Undo'
+    };
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+});
