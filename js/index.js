@@ -118,8 +118,7 @@ function loadToDoList(user) {
         componentHandler.upgradeDom(); //have to upgradeDom when Elements are added Dynamically
 
         var checkBox = document.getElementById("list-checkbox-" + taskCount);
-        var key = data.key;
-        var stateRef = database.ref('Users/' + user.uid + '/Task/' + key);
+        var stateRef = database.ref('Users/' + user.uid + '/Tasks/' + data.key);
 
         // Get the status on Firebase
         stateRef.once("value", function(data) {
