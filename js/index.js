@@ -48,7 +48,7 @@ function newElement() {
 
     var task = document.getElementById("task").value;
     var userId = auth.currentUser.uid;
-    var taskRef = database.ref('Users/' + userId + '/Task');
+    var taskCount = 0;
 
     // references the TaskCount stored on firebase for current user
     var taskCountRef = database.ref('Users/' + userId + '/TaskCount/');
@@ -56,10 +56,16 @@ function newElement() {
         return (current_value || 0) + 1; //increments TaskCount on firebase
     });
 
-    if (task === '') { //input is empty
+    // gets TaskCount from firebase
+    taskCountRef.on("value", function(data) {
+        taskCount = data.val();
+    });
+
+    if (task === '') {
         alert("You must write something!");
-    } else { //push input to firebase (triggers on child_added event listener
-        taskRef.push({
+    } else { //set task(taskCount) to firebase (triggers on child_added event listener
+        var taskRef = database.ref('Users/' + userId + '/Tasks/' + '/task' + taskCount);
+        taskRef.set({
             Task: task,
             State: false //keeps track of the state of checkboxes
         });
@@ -73,7 +79,7 @@ function deleteElement(taskcount) {
 /* End Section -- add new item to list*/
 
 function loadToDoList(user) {
-    var taskRef = database.ref('Users/' + user.uid + '/Task');
+    var taskRef = database.ref('Users/' + user.uid + '/Tasks');
     var taskCountRef = database.ref('Users/' + user.uid + '/TaskCount/');
     var taskCount = 0;
 
