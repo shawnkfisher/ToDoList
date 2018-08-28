@@ -57,27 +57,29 @@
     </header>
     <div class="row col-lg-12 col-md-12 col-sm-12">&nbsp;</div>
     <div class="row">
-        <div id="enter-input" class="demo-card-square mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-card--expand">
-                <h2 class="mdl-card__title-text">Add a New Task</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-                <form>
+        <div class="col-lg-04 col-md-03 col-sm-02">&nbsp;</div>
+        <div class="col-lg-04 col-md-06 col-sm-08">
+            <div id="enter-input" class="demo-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand">
+                    <h2 class="mdl-card__title-text">Add a New Task</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
                     <div class="mdl-textfield mdl-js-textfield">
                         <input class="input-item mdl-textfield__input" type="text" id="task">
                         <label class="mdl-textfield__label" for="task">Task...</label>
                     </div>
-                </form>
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-                <button onclick="newElement()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Add
-                </button>
-                <button onclick="closeInput()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Exit
-                </button>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <button id="addBtn" onclick="newElement()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        Add
+                    </button>
+                    <button onclick="closeInput()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        Exit
+                    </button>
+                </div>
             </div>
         </div>
+        <div class="col-lg-04 col-md-03 col-sm-02">&nbsp;</div>
     </div>
     <main class="row mdl-layout__content" id="mdl-layout__content">
         <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">

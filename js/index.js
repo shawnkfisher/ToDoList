@@ -28,6 +28,13 @@ function openInput() {
     document.getElementById("enter-input").style.display = "flex";
 }
 
+document.getElementById('task').addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        document.getElementById("addBtn").click();
+    }
+});
+
 function closeInput() {
     document.getElementById("mdl-layout__content").style.display = "inline-block";
     document.getElementById("enter-input").style.display = "none";

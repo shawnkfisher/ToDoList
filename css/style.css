@@ -111,8 +111,7 @@ html, body {
     margin-top: 8px;
 }
 .demo-card-square.mdl-card {
-    width: 320px;
-    height: 320px;
+    width: 100%;
     z-index: 800;
     display: none;
     justify-content: center;
