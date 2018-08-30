@@ -64,6 +64,7 @@ function newElement() {
     if (task === '') {
         alert("You must write something!");
     } else { //set task(taskCount) to firebase (triggers on child_added event listener
+        //var taskRef = database.ref('Users/' + userId + '/Tasks/' + '/task' + taskCount);
         var taskRef = database.ref('Users/' + userId + '/Tasks/' + '/task' + taskCount);
         taskRef.set({
             Task: task,
@@ -73,33 +74,38 @@ function newElement() {
     document.getElementById("task").value = "";
 }
 
-function deleteElement(taskcount) {
+function deleteElement(taskNum) {
+    var userId = auth.currentUser.uid;
+    database.ref('Users/' + userId + '/Tasks/' + '/task' + taskNum).remove();
+    document.getElementById("task" + taskNum).style.display = "none";
 
 }
 /* End Section -- add new item to list*/
 
 function loadToDoList(user) {
     var taskRef = database.ref('Users/' + user.uid + '/Tasks');
-    var taskCountRef = database.ref('Users/' + user.uid + '/TaskCount/');
+    //var taskCountRef = database.ref('Users/' + user.uid + '/TaskCount/');
     var taskCount = 0;
 
     // child_added event listener
     taskRef.on("child_added", function(data) {
-        var task = data.val().Task; //gets task from firebase
         taskCount++;
+        var task = data.val().Task; //gets task from firebase
 
         // Create Elements for ToDoList
         var li = document.createElement("li");
         var span = document.createElement("span");
-        var textnode = document.createTextNode(task);
+        var taskNode = document.createTextNode(task);
         var span2 = document.createElement("span");
         var label = document.createElement("label");
         var input = document.createElement("input");
-        //var span3 = document.createElement("span");
-        //var icon = document.createTextNode("backspace");
+        var i = document.createElement("i");
+        var icon = document.createTextNode("clear");
+        //var btn = document.createElement("button");
 
         // Classes for elements
         li.className = 'mdl-list__item';
+        li.id = 'task'+ taskCount;
         span.className = 'mdl-list__item-primary-content ';
         label.className = 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect';
         label.setAttribute("for", "list-checkbox-" + taskCount); // attempting to make checkboxes correspond with elements
@@ -107,14 +113,20 @@ function loadToDoList(user) {
         input.type = 'checkbox';
         input.id = 'list-checkbox-' + taskCount; // attempting to make checkboxes correspond with elements
         input.className = 'mdl-checkbox__input';
+        i.className = 'material-icons md-24';
 
         //Append Elements to DOM
         document.getElementById("todoList").appendChild(li);
-        span.appendChild(textnode);
+        li.innerHTML = '<button id="taskBtn' + taskCount +'" onclick="deleteElement('+ taskCount + ')" class="close mdl-button mdl-js-button mdl-js-ripple-effect" />';
+        var btn = document.getElementById('taskBtn' + taskCount);
+        btn.appendChild(i);
+        i.appendChild(icon);
+        span.appendChild(taskNode);
         li.appendChild(span);
         li.appendChild(span2);
         span2.appendChild(label);
         label.appendChild(input);
+
         componentHandler.upgradeDom(); //have to upgradeDom when Elements are added Dynamically
 
         var checkBox = document.getElementById("list-checkbox-" + taskCount);
@@ -137,20 +149,12 @@ function loadToDoList(user) {
                 stateRef.update({State: false});
             }
         });
-
-        // gets TaskCount from firebase
-        taskCountRef.on("value", function(data) {
-            taskCount = data.val();
-        });
-
     });
 }
 
 var snackbarContainer = document.getElementById('demo-snackbar-example');
 var addBtn = document.getElementById("addBtn");
-var handler = function(e) {
-    //remove the task
-};
+
 addBtn.addEventListener('click', function() {
     var data = {
         message: 'Task Added.',
@@ -160,3 +164,14 @@ addBtn.addEventListener('click', function() {
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
 });
+var handler = function(e) {
+    //remove the task
+    // gets TaskCount from firebase
+    var taskCount = 0;
+    var userId = auth.currentUser.uid;
+    var taskCountRef = database.ref('Users/' + userId + '/TaskCount/');
+    taskCountRef.on("value", function(data) {
+        taskCount = data.val();
+    });
+    deleteElement(taskCount);
+};
