@@ -129,3 +129,6 @@ html, body {
 .close {
     background: none;
 }
+.mdl-checkbox.is-checked .mdl-checkbox__box-outline {
+    border: 0;
+}
